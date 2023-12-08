@@ -38,10 +38,67 @@ class HomeView extends GetView<HomeController> {
                           onTap: () {
                             Get.toNamed(Routes.DETAIL_SURAH, arguments: surah);
                           },
-                          title: Text(surah.name.transliteration.id),
-                          subtitle: Text(surah.revelation.id),
-                          leading: CircleAvatar(
-                            child: Text(surah.number.toString()),
+                          leading: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                                image: AssetImage('assets/icons/list.png'),
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                surah.number.toString(),
+                                style: const TextStyle(
+                                    fontFamily: 'Roboto',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            surah.name.transliteration.id,
+                            style: const TextStyle(
+                                color: Color(0XFF240F4F),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Roboto',
+                                fontSize: 18),
+                          ),
+                          subtitle: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                surah.revelation.id.toUpperCase(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 13,
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              const Icon(Icons.circle,
+                                  size: 5, color: Color(0XFFBBC4CE)),
+                              const SizedBox(width: 5),
+                              Text(
+                                '${surah.numberOfVerses} AYAT',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Roboto',
+                                  fontSize: 13,
+                                ),
+                              )
+                            ],
+                          ),
+                          trailing: Text(
+                            surah.name.short,
+                            style: const TextStyle(
+                                fontFamily: 'Lateef',
+                                color: Color(0XFF863ED5),
+                                fontSize: 32,
+                                fontWeight: FontWeight.w500),
                           ),
                         );
                       },

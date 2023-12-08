@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:muslim_app/app/data/models/detail_surah.dart';
 import 'package:muslim_app/app/data/models/surah.dart';
 import 'package:muslim_app/app/data/repositories/surah_repository.dart';
 
@@ -32,4 +33,6 @@ class HomeController extends GetxController {
       update();
     }
   }
+
+  void playAudio(Verse ayat) {}
 }

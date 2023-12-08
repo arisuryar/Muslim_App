@@ -9,6 +9,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.6
   http: 1.1.2
+  just_audio: 0.9.36
+  device_preview: 1.1.0
   flutter: 
     sdk: flutter
 
@@ -18,5 +20,18 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - assets/images/
+    - assets/icons/
+  fonts: 
+    - family: Lateef
+      fonts: 
+        - asset: fonts/Lateef-Regular.ttf
+        - asset: fonts/Lateef-Medium.ttf
+    - family: Roboto
+      fonts: 
+        - asset: fonts/Roboto-Regular.ttf
+        - asset: fonts/Roboto-Bold.ttf
+        - asset: fonts/Roboto-Medium.ttf
   uses-material-design: true
 
