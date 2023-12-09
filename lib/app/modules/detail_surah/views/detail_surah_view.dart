@@ -18,9 +18,10 @@ class DetailSurahView extends GetView<DetailSurahController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          surah.name.transliteration.id.toUpperCase(),
+          'SURAH ${surah.name.transliteration.id.toUpperCase()}',
           style: const TextStyle(
               fontFamily: 'Roboto',
               color: Color(0XFF240F4F),

@@ -1,10 +1,18 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:muslim_app/app/data/repositories/surah_repository.dart';
-
-import 'package:muslim_app/app/routes/app_pages.dart';
+import 'package:muslim_app/app/modules/asmaul_husna/views/asmaul_husna_view.dart';
+import 'package:muslim_app/app/modules/ayat_kursi/views/ayat_kursi_view.dart';
+import 'package:muslim_app/app/modules/bacaan_shalat/views/bacaan_shalat_view.dart';
+import 'package:muslim_app/app/modules/doa_harian/views/doa_harian_view.dart';
+import 'package:muslim_app/app/modules/doa_tahlil/views/doa_tahlil_view.dart';
+import 'package:muslim_app/app/modules/home/widgets/content.dart';
+import 'package:muslim_app/app/modules/home/widgets/tab_bar_list.dart';
+import 'package:muslim_app/app/modules/niat_shalat/views/niat_shalat_view.dart';
+import 'package:muslim_app/app/modules/surah/views/surah_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -14,96 +22,55 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
-      ),
-      body: GetBuilder<HomeController>(
-        init: HomeController(),
-        builder: (surahModel) {
-          return surahModel.isLoading.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : surahModel.errorMessage.isNotEmpty
-                  ? Center(
-                      child: Text(surahModel.errorMessage.value),
-                    )
-                  : ListView.builder(
-                      itemCount: surahModel.surah.length,
-                      itemBuilder: (context, index) {
-                        final surah = surahModel.surah[index];
-                        return ListTile(
-                          onTap: () {
-                            Get.toNamed(Routes.DETAIL_SURAH, arguments: surah);
-                          },
-                          leading: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                filterQuality: FilterQuality.high,
-                                image: AssetImage('assets/icons/list.png'),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                surah.number.toString(),
-                                style: const TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            surah.name.transliteration.id,
-                            style: const TextStyle(
-                                color: Color(0XFF240F4F),
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Roboto',
-                                fontSize: 18),
-                          ),
-                          subtitle: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                surah.revelation.id.toUpperCase(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 13,
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              const Icon(Icons.circle,
-                                  size: 5, color: Color(0XFFBBC4CE)),
-                              const SizedBox(width: 5),
-                              Text(
-                                '${surah.numberOfVerses} AYAT',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Roboto',
-                                  fontSize: 13,
-                                ),
-                              )
-                            ],
-                          ),
-                          trailing: Text(
-                            surah.name.short,
-                            style: const TextStyle(
-                                fontFamily: 'Lateef',
-                                color: Color(0XFF863ED5),
-                                fontSize: 32,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        );
-                      },
-                    );
-        },
+    return DefaultTabController(
+      length: 7,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(Get.width, Get.width * 0.67),
+          child: SafeArea(
+            child: AppBar(
+              backgroundColor: Colors.white,
+              flexibleSpace: Column(
+                children: [
+                  const SizedBox(height: 10),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    height: Get.width * 0.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/images/masjid.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                        child: Container(
+                          color: Colors.black.withOpacity(0.3),
+                          child: ContainerContent(controller: controller),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const TabBarList(),
+                ],
+              ),
+            ),
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            SurahView(),
+            DoaHarianView(),
+            DoaTahlilView(),
+            AyatKursiView(),
+            NiatShalatView(),
+            BacaanShalatView(),
+            AsmaulHusnaView(),
+          ],
+        ),
       ),
     );
   }

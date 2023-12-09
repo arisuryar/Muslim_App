@@ -11,6 +11,12 @@ dependencies:
   http: 1.1.2
   just_audio: 0.9.36
   device_preview: 1.1.0
+  auto_size_text: 3.0.0
+  flutter_screenutil: 5.9.0
+  intl: 0.18.1
+  geolocator: 10.1.0
+  geocoding: 2.1.1
+  hijriyah_indonesia: 0.1.2
   flutter: 
     sdk: flutter
 

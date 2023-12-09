@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:muslim_app/app/data/models/detail_surah.dart'
     as modelDetailAyat;
@@ -30,8 +31,8 @@ class LeadingAyat extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: 40,
-              width: 40,
+              height: 45,
+              width: 45,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -42,9 +43,9 @@ class LeadingAyat extends StatelessWidget {
               child: Center(
                 child: Text(
                   ayat.number.inSurah.toString(),
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontFamily: 'Roboto',
-                      fontSize: 14,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -55,9 +56,9 @@ class LeadingAyat extends StatelessWidget {
                   onPressed: () {
                     Get.defaultDialog(
                       titlePadding: const EdgeInsets.only(top: 20, bottom: 5),
-                      title: 'Tafsi Ayat ${ayat.number.inSurah}'.toUpperCase(),
-                      titleStyle: const TextStyle(
-                          fontSize: 16,
+                      title: 'Tafsir Ayat ${ayat.number.inSurah}'.toUpperCase(),
+                      titleStyle: TextStyle(
+                          fontSize: 18.sp,
                           fontFamily: 'Roboto',
                           fontWeight: FontWeight.bold),
                       content: SizedBox(
@@ -68,8 +69,8 @@ class LeadingAyat extends StatelessWidget {
                             child: Text(
                               ayat.tafsir.id.short,
                               textAlign: TextAlign.justify,
-                              style: const TextStyle(
-                                fontSize: 16,
+                              style: TextStyle(
+                                fontSize: 14.sp,
                                 fontFamily: 'Roboto',
                               ),
                             ),

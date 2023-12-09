@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:muslim_app/app/data/models/surah.dart';
 
@@ -15,10 +16,13 @@ class TitleContent extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.defaultDialog(
+          backgroundColor: Colors.white,
           titlePadding: const EdgeInsets.only(top: 20, bottom: 5),
           title: 'Tafsir Surah ${surah.name.transliteration.id}'.toUpperCase(),
-          titleStyle: const TextStyle(
-              fontSize: 20, fontFamily: 'Roboto', fontWeight: FontWeight.bold),
+          titleStyle: TextStyle(
+              fontSize: 18.sp,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold),
           content: SizedBox(
             height: 200,
             child: Padding(
@@ -27,8 +31,8 @@ class TitleContent extends StatelessWidget {
                 child: Text(
                   surah.tafsir.id,
                   textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 16,
+                  style: TextStyle(
+                    fontSize: 14.sp,
                     fontFamily: 'Roboto',
                   ),
                 ),
@@ -61,11 +65,11 @@ class TitleContent extends StatelessWidget {
                   const SizedBox(width: 30),
                   Text(
                     surah.name.transliteration.id.toUpperCase(),
-                    style: const TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0XFF9543FF)),
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const Icon(
                     Icons.info_outline_rounded,
@@ -75,17 +79,17 @@ class TitleContent extends StatelessWidget {
               ),
               Text(
                 surah.name.short,
-                style: const TextStyle(
-                  fontFamily: 'Lateef',
-                  fontSize: 32,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(
+                    fontFamily: 'Lateef',
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0XFF9543FF)),
               ),
               Text(
                 surah.name.translation.id,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Roboto',
-                  fontSize: 18,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -95,11 +99,11 @@ class TitleContent extends StatelessWidget {
                 children: [
                   Text(
                     surah.revelation.id.toUpperCase(),
-                    style: const TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[700]),
                   ),
                   const SizedBox(width: 5),
                   const Icon(
@@ -110,11 +114,11 @@ class TitleContent extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text(
                     '${surah.numberOfVerses} AYAT',
-                    style: const TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey[700]),
                   ),
                 ],
               ),
