@@ -6,10 +6,10 @@ import 'package:muslim_app/app.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => MyApp(),
-    ),
-    // MyApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) => MyApp(),
+    // ),
+    MyApp(),
   );
 }

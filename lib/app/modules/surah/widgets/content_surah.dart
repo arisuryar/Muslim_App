@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 import 'package:muslim_app/app/data/models/surah.dart';
 import 'package:muslim_app/app/routes/app_pages.dart';
 
@@ -29,55 +31,33 @@ class ContentSurah extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
+          child: AutoSizeText(
             surah.number.toString(),
-            style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600),
+            maxLines: 1,
+            style: AppTextStyle.textBlack14SemiBold,
           ),
         ),
       ),
-      title: Text(
+      title: AutoSizeText(
         surah.name.transliteration.id,
-        style: TextStyle(
-            color: const Color(0XFF240F4F),
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Roboto',
-            fontSize: 16.sp),
+        maxLines: 1,
+        style: AppTextStyle.textBlack18Bold,
       ),
       subtitle: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            surah.revelation.id.toUpperCase(),
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontFamily: 'Roboto',
-              fontSize: 10.sp,
-            ),
-          ),
+          Text(surah.revelation.id.toUpperCase(),
+              style: AppTextStyle.textGrey12),
           const SizedBox(width: 5),
           const Icon(Icons.circle, size: 5, color: Color(0XFFBBC4CE)),
           const SizedBox(width: 5),
-          Text(
-            '${surah.numberOfVerses} AYAT',
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontFamily: 'Roboto',
-              fontSize: 10.sp,
-            ),
-          )
+          Text('${surah.numberOfVerses} AYAT', style: AppTextStyle.textGrey12)
         ],
       ),
       trailing: Text(
         surah.name.short,
-        style: TextStyle(
-            fontFamily: 'Lateef',
-            color: const Color(0XFF863ED5),
-            fontSize: 28.sp,
-            fontWeight: FontWeight.w500),
+        style: AppTextStyle.arabicPurple30,
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:muslim_app/app/constant/app_color.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 import 'package:muslim_app/app/data/models/surah.dart';
 
 class TitleContent extends StatelessWidget {
@@ -19,23 +21,15 @@ class TitleContent extends StatelessWidget {
           backgroundColor: Colors.white,
           titlePadding: const EdgeInsets.only(top: 20, bottom: 5),
           title: 'Tafsir Surah ${surah.name.transliteration.id}'.toUpperCase(),
-          titleStyle: TextStyle(
-              fontSize: 18.sp,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.bold),
+          titleStyle: AppTextStyle.textBlack18Bold,
           content: SizedBox(
             height: 200,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
-                child: Text(
-                  surah.tafsir.id,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
+                child: Text(surah.tafsir.id,
+                    textAlign: TextAlign.justify,
+                    style: AppTextStyle.textBlack12SemiBold),
               ),
             ),
           ),
@@ -47,9 +41,9 @@ class TitleContent extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              const Color(0XFF994EF8).withOpacity(0.1),
-              const Color(0XFF863ED5).withOpacity(0.1),
-              const Color(0XFF763FBC).withOpacity(0.1),
+              AppColor.purpleLight.withOpacity(0.1),
+              AppColor.purpleMid.withOpacity(0.1),
+              AppColor.purpleDark.withOpacity(0.1),
             ],
           ),
           borderRadius: BorderRadius.circular(10),
@@ -63,63 +57,34 @@ class TitleContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(width: 30),
-                  Text(
-                    surah.name.transliteration.id.toUpperCase(),
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text(surah.name.transliteration.id.toUpperCase(),
+                      style: AppTextStyle.textBlack18Bold),
                   const Icon(
                     Icons.info_outline_rounded,
-                    color: Color(0XFF9543FF),
+                    color: AppColor.purpleLight,
                   ),
                 ],
               ),
-              Text(
-                surah.name.short,
-                style: TextStyle(
-                    fontFamily: 'Lateef',
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w500,
-                    color: const Color(0XFF9543FF)),
-              ),
-              Text(
-                surah.name.translation.id,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              Text(surah.name.short, style: AppTextStyle.arabicPurple24),
+              Text(surah.name.translation.id,
+                  style: AppTextStyle.textBlack14SemiBold),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     surah.revelation.id.toUpperCase(),
-                    style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[700]),
+                    style: AppTextStyle.textGrey12,
                   ),
                   const SizedBox(width: 5),
                   const Icon(
                     Icons.circle,
-                    color: Colors.grey,
+                    color: AppColor.grey,
                     size: 6,
                   ),
                   const SizedBox(width: 5),
-                  Text(
-                    '${surah.numberOfVerses} AYAT',
-                    style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey[700]),
-                  ),
+                  Text('${surah.numberOfVerses} AYAT',
+                      style: AppTextStyle.textGrey12),
                 ],
               ),
             ],

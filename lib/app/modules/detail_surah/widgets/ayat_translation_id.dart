@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 import 'package:muslim_app/app/data/models/detail_surah.dart'
     as modelDetailAyat;
 
@@ -15,15 +16,8 @@ class AyatTranslationId extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       alignment: Alignment.centerLeft,
-      child: Text(
-        ayat.translation.id,
-        textAlign: TextAlign.justify,
-        style: const TextStyle(
-            fontSize: 16,
-            fontFamily: 'Roboto',
-            color: Color(0XFF8789A3),
-            fontWeight: FontWeight.w400),
-      ),
+      child: Text(ayat.translation.id,
+          textAlign: TextAlign.justify, style: AppTextStyle.textPurple16Normal),
     );
   }
 }

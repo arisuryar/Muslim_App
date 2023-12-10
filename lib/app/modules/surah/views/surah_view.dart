@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:muslim_app/app/constant/app_color.dart';
 import 'package:muslim_app/app/modules/surah/widgets/content_surah.dart';
 
 import '../controllers/surah_controller.dart';
@@ -10,7 +11,7 @@ class SurahView extends GetView<SurahController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.white,
       body: GetBuilder<SurahController>(
         init: SurahController(),
         builder: (surahModel) {

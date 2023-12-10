@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 
 import 'package:muslim_app/app/data/models/surah.dart';
 import 'package:muslim_app/app/data/repositories/detail_surah_repository.dart';
@@ -20,13 +21,8 @@ class DetailSurahView extends GetView<DetailSurahController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-          'SURAH ${surah.name.transliteration.id.toUpperCase()}',
-          style: const TextStyle(
-              fontFamily: 'Roboto',
-              color: Color(0XFF240F4F),
-              fontWeight: FontWeight.bold),
-        ),
+        title: Text('SURAH ${surah.name.transliteration.id.toUpperCase()}',
+            style: AppTextStyle.textBlack18Bold),
         centerTitle: true,
       ),
       body: ListView(

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 
 class WidgetSholat extends StatelessWidget {
   const WidgetSholat({
@@ -19,19 +20,11 @@ class WidgetSholat extends StatelessWidget {
       children: [
         AutoSizeText(
           sholat,
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w700,
-              fontFamily: 'Roboto'),
+          style: AppTextStyle.textWhite14Bold,
         ),
         AutoSizeText(
           time,
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w700,
-              fontFamily: 'Roboto'),
+          style: AppTextStyle.textWhite14Bold,
         ),
       ],
     );

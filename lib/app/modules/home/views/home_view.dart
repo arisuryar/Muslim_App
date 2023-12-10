@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 
 import 'package:muslim_app/app/data/repositories/surah_repository.dart';
 import 'package:muslim_app/app/modules/asmaul_husna/views/asmaul_husna_view.dart';
@@ -26,13 +27,22 @@ class HomeView extends GetView<HomeController> {
       length: 7,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size(Get.width, Get.width * 0.67),
+          preferredSize: Size(Get.width, Get.width * 0.76),
           child: SafeArea(
             child: AppBar(
               backgroundColor: Colors.white,
               flexibleSpace: Column(
                 children: [
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 9),
+                  Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Muslim App',
+                      style: AppTextStyle.textPurple30,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 8),
                     height: Get.width * 0.5,

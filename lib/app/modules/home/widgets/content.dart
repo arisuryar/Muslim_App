@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hijriyah_indonesia/hijriyah_indonesia.dart';
 import 'package:intl/intl.dart';
+import 'package:muslim_app/app/constant/app_color.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 import 'package:muslim_app/app/data/models/sholat.dart';
 import 'package:muslim_app/app/data/models/user_location.dart';
 import 'package:muslim_app/app/modules/home/controllers/home_controller.dart';
@@ -21,29 +23,45 @@ class ContainerContent extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.all(10),
-      child: FutureBuilder<UserLocation>(
+      child: FutureBuilder<UserLocation?>(
         future: controller.getCurrentPosition(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(
-                color: Colors.white,
+                color: AppColor.white,
               ),
             );
           }
-          UserLocation user = snapshot.data!;
+          if (snapshot.data == null) {
+            return StreamBuilder(
+              stream: Stream.periodic(const Duration(seconds: 1)),
+              builder: (context, snapshot) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(DateFormat('HH:mm').format(DateTime.now()),
+                        style: AppTextStyle.textWhite30),
+                    AutoSizeText(
+                      Hijriyah.now().toFormat('dd MMMM yyyy'),
+                      style: AppTextStyle.textWhite16Normal,
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+          UserLocation? user = snapshot.data;
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Menampilkan Lokasi User
-              AutoSizeText(
-                '${user.city}, ${user.country}',
-                style: TextStyle(
-                    fontFamily: 'Roboto',
-                    color: Colors.white,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold),
-              ),
+              user != null
+                  ? AutoSizeText(
+                      '${user.city}, ${user.country}',
+                      style: AppTextStyle.textWhite18Bold,
+                    )
+                  : const SizedBox(),
 
               // Menampilkan Jam dan Tanggal Hari Ini
               StreamBuilder(
@@ -53,20 +71,11 @@ class ContainerContent extends StatelessWidget {
                     children: [
                       AutoSizeText(
                         DateFormat('HH:mm').format(DateTime.now()),
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          color: Colors.white,
-                          fontSize: 32.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppTextStyle.textWhite30,
                       ),
                       AutoSizeText(
                         Hijriyah.now().toFormat('dd MMMM yyyy'),
-                        style: TextStyle(
-                            fontFamily: 'Roboto',
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500),
+                        style: AppTextStyle.textWhite18Bold,
                       ),
                     ],
                   );
@@ -74,9 +83,9 @@ class ContainerContent extends StatelessWidget {
               ),
 
               // Menampilkan Sholat Hari Ini
-              FutureBuilder<Sholat>(
+              FutureBuilder<Sholat?>(
                 future: controller.getSholat(
-                    user.city!.replaceFirst('Kota ', ''),
+                    user!.city!.replaceFirst('Kota ', ''),
                     user.country!,
                     DateFormat('dd-MM-yyyy').format(DateTime.now())),
                 builder: (context, snapshot) {
@@ -86,8 +95,13 @@ class ContainerContent extends StatelessWidget {
                   if (snapshot.hasError) {
                     return const SizedBox();
                   }
-                  Sholat sholat = snapshot.data!;
-                  return WidgetFullShalat(sholat: sholat);
+                  if (snapshot.data == null) {
+                    return const SizedBox();
+                  }
+                  Sholat? sholat = snapshot.data;
+                  return sholat != null
+                      ? WidgetFullShalat(sholat: sholat)
+                      : const SizedBox();
                 },
               ),
             ],

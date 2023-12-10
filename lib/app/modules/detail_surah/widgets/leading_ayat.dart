@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:muslim_app/app/constant/app_color.dart';
+import 'package:muslim_app/app/constant/app_text.dart';
 import 'package:muslim_app/app/data/models/detail_surah.dart'
     as modelDetailAyat;
 
@@ -23,7 +25,7 @@ class LeadingAyat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: const Color(0XFF863ED5).withOpacity(0.05),
+          color: AppColor.purpleLight.withOpacity(0.05),
           borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -43,10 +45,7 @@ class LeadingAyat extends StatelessWidget {
               child: Center(
                 child: Text(
                   ayat.number.inSurah.toString(),
-                  style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.w600),
+                  style: AppTextStyle.textBlack12SemiBold,
                 ),
               ),
             ),
@@ -57,10 +56,7 @@ class LeadingAyat extends StatelessWidget {
                     Get.defaultDialog(
                       titlePadding: const EdgeInsets.only(top: 20, bottom: 5),
                       title: 'Tafsir Ayat ${ayat.number.inSurah}'.toUpperCase(),
-                      titleStyle: TextStyle(
-                          fontSize: 18.sp,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.bold),
+                      titleStyle: AppTextStyle.textBlack18Bold,
                       content: SizedBox(
                         height: 200,
                         child: Padding(
@@ -69,10 +65,7 @@ class LeadingAyat extends StatelessWidget {
                             child: Text(
                               ayat.tafsir.id.short,
                               textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontFamily: 'Roboto',
-                              ),
+                              style: AppTextStyle.textBlack12SemiBold,
                             ),
                           ),
                         ),
@@ -80,7 +73,7 @@ class LeadingAyat extends StatelessWidget {
                     );
                   },
                   icon: const Icon(Icons.info_outline),
-                  color: const Color(0XFF863ED5),
+                  color: AppColor.purpleLight,
                 ),
                 (ayat.kondisiAudio == 'stop')
                     ? IconButton(
@@ -88,7 +81,7 @@ class LeadingAyat extends StatelessWidget {
                           detailSurah.playAudio(ayat);
                         },
                         icon: const Icon(Icons.play_arrow_rounded),
-                        color: const Color(0XFF863ED5),
+                        color: AppColor.purpleLight,
                       )
                     : Row(
                         mainAxisSize: MainAxisSize.min,
@@ -100,7 +93,7 @@ class LeadingAyat extends StatelessWidget {
                                   },
                                   icon: const Icon(
                                     Icons.pause,
-                                    color: Color(0XFF863ED5),
+                                    color: AppColor.purpleLight,
                                   ),
                                 )
                               : IconButton(
@@ -109,7 +102,7 @@ class LeadingAyat extends StatelessWidget {
                                   },
                                   icon: const Icon(
                                     Icons.play_arrow_rounded,
-                                    color: Color(0XFF863ED5),
+                                    color: AppColor.purpleLight,
                                   ),
                                 ),
                           IconButton(
@@ -118,7 +111,7 @@ class LeadingAyat extends StatelessWidget {
                             },
                             icon: const Icon(
                               Icons.stop,
-                              color: Color(0XFF863ED5),
+                              color: AppColor.purpleLight,
                             ),
                           ),
                         ],
