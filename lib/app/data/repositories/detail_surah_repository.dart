@@ -9,7 +9,7 @@ class DetailSurahRepository {
       final data = await apiService.getDetailSurah(id);
       return DetailSurah.fromJson(data);
     } catch (e) {
-      throw Exception('Error');
+      throw Exception('Failed');
     }
   }
 }

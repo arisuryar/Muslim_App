@@ -10,7 +10,7 @@ class SurahRepository {
 
       return data.map((e) => Surah.fromJson(e)).toList();
     } catch (e) {
-      throw Exception('Error');
+      throw Exception('Failed');
     }
   }
 }

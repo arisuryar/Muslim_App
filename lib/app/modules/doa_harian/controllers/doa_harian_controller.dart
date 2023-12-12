@@ -1,23 +1,36 @@
 import 'package:get/get.dart';
+import 'package:muslim_app/app/data/models/doa_harian.dart';
+import 'package:muslim_app/app/data/repositories/doa_harian_repository.dart';
 
 class DoaHarianController extends GetxController {
-  //TODO: Implement DoaHarianController
+  final DoaHarianRepository doaHarianRepository =
+      Get.put(DoaHarianRepository());
 
-  final count = 0.obs;
+  final _doaHarian = <DoaHarian>[].obs;
+  var _isLoading = false.obs;
+  var _errorMessage = ''.obs;
+
+  List<DoaHarian> get doaHarian => _doaHarian;
+  RxBool get isLoading => _isLoading;
+  RxString get errorMessage => _errorMessage;
+
   @override
   void onInit() {
     super.onInit();
+    fetchDoaHarian();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  Future<void> fetchDoaHarian() async {
+    _isLoading = true.obs;
+    _errorMessage = ''.obs;
 
-  @override
-  void onClose() {
-    super.onClose();
+    try {
+      _doaHarian.value = await doaHarianRepository.getDoaHarian();
+    } catch (e) {
+      _errorMessage = 'Failed fetch Doa Harian'.obs;
+    } finally {
+      _isLoading = false.obs;
+      update();
+    }
   }
-
-  void increment() => count.value++;
 }

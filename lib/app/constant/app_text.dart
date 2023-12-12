@@ -6,7 +6,7 @@ class AppTextStyle {
   static TextStyle arabicBlack40Medium = const TextStyle(
     fontFamily: 'Lateef',
     fontWeight: FontWeight.w500,
-    color: AppColor.purpleLight,
+    color: AppColor.blackPrimary,
     fontSize: 40,
   );
   static TextStyle arabicPurple30 = const TextStyle(
@@ -28,6 +28,12 @@ class AppTextStyle {
     color: AppColor.grey,
     fontSize: 12,
   );
+  static TextStyle textGrey14 = const TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+    color: AppColor.grey,
+    fontSize: 14,
+  );
   static TextStyle textPurple30 = const TextStyle(
     fontFamily: 'Roboto',
     fontWeight: FontWeight.w700,
@@ -45,6 +51,12 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     color: AppColor.purpleLight,
     fontSize: 16,
+  );
+  static TextStyle textPurple14Normal = const TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+    color: AppColor.purpleLight,
+    fontSize: 14,
   );
   static TextStyle textWhite30 = const TextStyle(
     fontFamily: 'Roboto',
